@@ -11,9 +11,10 @@ local CONFIG = {
 		CAN_JUMP = true,
 		CAN_CLIMB = true
 	},
-	MANIAC = true, -- Wethere this AI should kill everyone on its path
-	TASTE = "STRONG", -- Decides on what the AI should prioritize in killing
+	MANIAC = false, -- Wethere this AI should kill everyone on its path
+	TASTE = "ALL", -- Decides on what the AI should prioritize in killing. Options are: "NEUTRAL","ALL","WEAK","STRONG"
 	DETECTION_DISTANCE = 100 -- How long the AI can see
+	DAMAGE = 5, -- The amount of damage it deals to an "enemy"
 }
 
 -- Services
@@ -67,7 +68,7 @@ local function doSomethingWithTarget(target:Model)
 	
 	if (d<8) then
 		if (CONFIG.MANIAC==true) then
-			h:TakeDamage(10)
+			h:TakeDamage(CONFIG.DAMAGE)
 			task.wait(1)
 		end
 	else
